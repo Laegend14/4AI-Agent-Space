@@ -1,15 +1,15 @@
 <div align="center">
-  <img src="https://github.com/soonchain/4AI/blob/main/img/banner.png" width="500"/> 
+
+<h1>4AI AGENT SPACE</h1>
 
 <br>
+
 <a href="https://4bsc.ai"><img src="https://img.shields.io/badge/Website-4bsc.ai-FFDF00?style=plastic&logo=googlechrome&logoColor=white" /></a> &nbsp;
-<a href="https://twitter.com/4ai"><img src="https://img.shields.io/twitter/follow/4ai"></a> &nbsp
-<a href="https://t.me/4ai"><img src="https://img.shields.io/badge/Telegram-4AI-FFDF00?style=plastic&logo=telegram&logoColor=white" /></a>
-&nbsp;
-<a href="https://discord.gg/kyVHRQSFyg"><img src="https://img.shields.io/discord/1359770110310744156?color=FFDF00&label=Discord&logo=discord&logoColor=white&style=plastic" /></a>
-&nbsp;
+<a href="https://twitter.com/4ai"><img src="https://img.shields.io/twitter/follow/4ai"></a> &nbsp;
+<a href="https://t.me/4ai"><img src="https://img.shields.io/badge/Telegram-4AI-FFDF00?style=plastic&logo=telegram&logoColor=white" /></a> &nbsp;
+<a href="https://discord.gg/kyVHRQSFyg"><img src="https://img.shields.io/discord/1359770110310744156?color=FFDF00&label=Discord&logo=discord&logoColor=white&style=plastic" /></a> &nbsp;
 <a href="https://docs.4bsc.ai"><img src="https://img.shields.io/badge/Gitbook-Read_Docs-FFDF00?style=plastic&logo=gitbook&logoColor=white" /></a>
-<br>
+
 </div>
 
 ## Agent Space Introduction
