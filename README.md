@@ -1,7 +1,6 @@
 <div align="center">
-
-<h1>4AI AGENT SPACE</h1>
-
+ <img src="https://github.com/soonchain/4AI-Agent-Space/blob/main/img/Agent%20Space.png" alt="4AI Agent Space" width="900"/>
+  
 <br>
 
 <a href="https://4bsc.ai"><img src="https://img.shields.io/badge/Website-4bsc.ai-FFDF00?style=plastic&logo=googlechrome&logoColor=white" /></a> &nbsp;
