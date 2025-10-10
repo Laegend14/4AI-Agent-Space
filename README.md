@@ -17,7 +17,7 @@ Agent Space is an open-source framework that automatically selects the appropria
 
 ## 4AI Agent Space Framwork
 
-![Alt text](https://github.com/soonchain/4AI/blob/main/img/Agent_Space.png)
+![Alt text](https://github.com/soonchain/4AI-Agent-Space/blob/main/img/Agent_Space.png)
 
 ## Component
 ### 🔥 Pioneer  
