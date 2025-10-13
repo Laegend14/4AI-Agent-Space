@@ -14,7 +14,7 @@ Agent Space is an open-source framework that automatically selects the appropria
 ### 🔥 Pioneer  
 This is the starting point that initiates the task with tags and a specific task. It sends the task with tags { tag: 1+4, task }.
 
-### 🚀 Roog Agent
+### 🚀 Root Agent
 Master Agent selects the suitable agents from the Agent Cluster based on the task's needs. And evaluates the outputs to determine the final result.
 
 ### 🌐 Agent  
