@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthGuard HabitHub</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        health: {
+                            primary: '#4F46E5',
+                            secondary: '#10B981',
+                            danger: '#EF4444',
+                            warning: '#F59E0B',
+                            info: '#3B82F6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+        .issue-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        .health-card-visual {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .health-card-visual::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-health-primary"></i>
+                <span class="text-xl font-bold text-gray-800">HealthGuard HabitHub</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-health-primary font-medium">Home</a>
+                <a href="#" class="text-gray-600 hover:text-health-primary">All Issues</a>
+                <a href="#" class="text-gray-600 hover:text-health-primary">About</a>
+            </div>
+            <button class="md:hidden">
+                <i data-feather="menu" class="text-gray-600"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-health-primary to-health-secondary py-20 px-6 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-white mix-blend-overlay filter blur-3xl"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 rounded-full bg-white mix-blend-overlay filter blur-3xl"></div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Break Bad Habits, Boost Your Health</h1>
+            <p class="text-xl mb-8 animate-fade-in delay-100">Discover which habits to avoid for common health issues and take control of your wellbeing today.</p>
+            <div class="relative max-w-md mx-auto mb-12">
+                <img src="http://static.photos/wellness/1024x576/1" alt="Healthy lifestyle" class="rounded-xl shadow-2xl border-4 border-white transform rotate-2">
+                <div class="absolute -bottom-6 -right-6 bg-white p-3 rounded-lg shadow-lg">
+                    <img src="http://static.photos/health/200x200/2" alt="Doctor" class="w-16 h-16 rounded-full border-2 border-health-primary">
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-health-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">Explore Health Issues</button>
+                <button class="border-2 border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-health-primary transition">Learn More</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-12 px-6">
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Common Health Issues & Habits to Avoid</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Small changes in daily habits can make a big difference in preventing and managing health conditions.</p>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="relative w-full md:w-96">
+                <input type="text" placeholder="Search health issues..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-health-primary focus:border-health-primary outline-none">
+                <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-600">Filter by:</span>
+                <select class="border rounded-lg px-3 py-2 focus:ring-2 focus:ring-health-primary outline-none">
+                    <option>All Categories</option>
+                    <option>Heart Health</option>
+                    <option>Digestive</option>
+                    <option>Metabolic</option>
+                    <option>Respiratory</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Health Issues Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Diabetes Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/1')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-secondary bg-opacity-10 text-health-secondary">
+                        <i data-feather="activity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Diabetes</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Eating late at night</li>
+                        <li>Consuming sugary foods</li>
+                        <li>Refined carbohydrates</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">Late meals and high-sugar diets affect blood sugar control and insulin sensitivity.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hypertension Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/2')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-danger bg-opacity-10 text-health-danger">
+                        <i data-feather="heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Hypertension</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Using too much salt</li>
+                        <li>Processed foods</li>
+                        <li>Excessive alcohol</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">Excess sodium and alcohol increase blood pressure and strain the heart.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Migraine Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/3')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-info bg-opacity-10 text-health-info">
+                        <i data-feather="alert-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Migraine</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Skipping meals</li>
+                        <li>Dehydration</li>
+                        <li>Excessive caffeine</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">Low blood sugar and dehydration can trigger migraine attacks.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Heart Disease Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/4')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-danger bg-opacity-10 text-health-danger">
+                        <i data-feather="heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Heart Disease</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Physical inactivity</li>
+                        <li>Smoking</li>
+                        <li>High-fat diets</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">Lack of exercise and unhealthy fats raise cholesterol and heart strain.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gastritis Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/5')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-warning bg-opacity-10 text-health-warning">
+                        <i data-feather="alert-triangle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Gastritis</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Eating too fast</li>
+                        <li>Spicy or acidic foods</li>
+                        <li>Frequent NSAID use</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">These irritate the stomach lining and worsen inflammation.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Acid Reflux Card -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="health-card-visual" style="background-image: url('http://static.photos/medical/640x360/6')"></div>
+                <div class="p-6">
+                    <div class="issue-icon bg-health-warning bg-opacity-10 text-health-warning">
+                        <i data-feather="alert-octagon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Acid Reflux (GERD)</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+                        <li>Lying down after meals</li>
+                        <li>Overeating</li>
+                        <li>Late-night eating</li>
+                    </ul>
+                    <p class="text-gray-500 text-sm mb-4">These increase pressure on the stomach, pushing acid into the esophagus.</p>
+                    <button class="text-health-primary font-medium flex items-center">
+                        Learn more <i data-feather="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View More Button -->
+        <div class="mt-12 text-center">
+            <button class="bg-health-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                View All Health Issues <i data-feather="chevron-down" class="ml-2 w-5 h-5"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Stats Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-6 rounded-xl bg-health-primary bg-opacity-5">
+                    <div class="text-health-primary text-4xl font-bold mb-2">87%</div>
+                    <div class="text-gray-600">Improved health after breaking bad habits</div>
+                </div>
+                <div class="p-6 rounded-xl bg-health-secondary bg-opacity-5">
+                    <div class="text-health-secondary text-4xl font-bold mb-2">200+</div>
+                    <div class="text-gray-600">Health conditions analyzed</div>
+                </div>
+                <div class="p-6 rounded-xl bg-health-info bg-opacity-5">
+                    <div class="text-health-info text-4xl font-bold mb-2">1M+</div>
+                    <div class="text-gray-600">Users helped worldwide</div>
+                </div>
+                <div class="p-6 rounded-xl bg-health-warning bg-opacity-5">
+                    <div class="text-health-warning text-4xl font-bold mb-2">24/7</div>
+                    <div class="text-gray-600">Access to health resources</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-gray-100 py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-white rounded-xl shadow-md p-8 md:p-10 relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-10">
+                    <div class="w-64 h-64 rounded-full bg-health-primary mix-blend-overlay filter blur-3xl"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                        <div class="md:w-1/2">
+                            <img src="http://static.photos/wellness/640x360/7" alt="Health newsletter" class="rounded-lg shadow-md">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Get Health Tips Delivered</h2>
+                            <p class="text-gray-600 mb-6">Subscribe to our newsletter for weekly health habit insights and tips.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 border rounded-lg focus:ring-2 focus:ring-health-primary focus:border-health-primary outline-none">
+                    <button class="bg-health-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition whitespace-nowrap flex items-center justify-center gap-2">
+                        <i data-feather="mail" class="w-4 h-4"></i> Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i data-feather="heart" class="text-health-secondary"></i>
+                    <span class="text-xl font-bold">HealthGuard</span>
+                </div>
+                <p class="text-gray-400">Helping you build healthier habits for a better life.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">All Health Issues</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Research</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                <div class="flex space-x-4 mb-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i data-feather="linkedin"></i></a>
+                </div>
+                <p class="text-gray-400">contact@healthguard.com</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2023 HealthGuard HabitHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        // Simple animation for cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-hover');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
